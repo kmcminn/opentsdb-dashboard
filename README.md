@@ -1,3 +1,5 @@
+This project is no longer actively used and maintained by anyone. It still works and would love to find a new home.
+
 OpenTSDB dashboard
 ==================
 
