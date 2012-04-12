@@ -1,5 +1,1 @@
-module.exports = [
-	'http.hits',
-	'sockets.open',
-	'lolcats.viewed'
-]
+module.exports = ['http.hits', 'sockets.simultaneous', 'lolcats.viewed']

@@ -25,32 +25,32 @@ module.exports = Class(function() {
 	}
 
 	this.listen = function(port, hostname) {
-		express.createServer()
-			.use(express.cookieParser())
-			.use(express.session({ secret:'super-duper-secret stuff' }))
-			.use(express.bodyParser())
-			.post('/login',
-				handleAdminLogin)
-			.get('/',
-				authorizeAdmin,
-				bind(this, '_setFile', this._staticDir + '/index.html'),
-				bind(this, '_sendFile'))
-			.get(/^\/tsd\/.*/,
-				authorizeAdmin,
-				bind(this._tsdProxy, 'handleRequest'))
-			.get('/css/:file',
-				authorizeAdmin,
-				bind(this, '_setDir', this._staticDir + '/css'),
-				bind(this, '_sendFile'))
-			.get('/img/:file',
-				authorizeAdmin,
-				bind(this, '_setDir', this._staticDir + '/img'),
-				bind(this, '_sendFile'))
-			.get('*',
-				bind(this, '_setError', 404, 'Not found'))
-			.error(
-				bind(this, '_handleError'))
-			.listen(port, hostname)
+		var s = express.createServer()
+		s.use(express.cookieParser())
+		s.use(express.session({ secret:'super-duper-secret stuff' }))
+		s.use(express.bodyParser())
+		s.post('/login',
+			handleAdminLogin)
+		s.get('/',
+			authorizeAdmin,
+			bind(this, '_setFile', this._staticDir + '/index.html'),
+			bind(this, '_sendFile'))
+		s.get(/^\/tsd\/.*/,
+			authorizeAdmin,
+			bind(this._tsdProxy, 'handleRequest'))
+		s.get('/css/:file',
+			authorizeAdmin,
+			bind(this, '_setDir', this._staticDir + '/css'),
+			bind(this, '_sendFile'))
+		s.get('/img/:file',
+			authorizeAdmin,
+			bind(this, '_setDir', this._staticDir + '/img'),
+			bind(this, '_sendFile'))
+		s.get('*',
+			bind(this, '_setError', 404, 'Not found'))
+		s.error(
+			bind(this, '_handleError'))
+		s.listen(port, hostname)
 	}
 
 	this._setError = function(code, message, req, res, next) {

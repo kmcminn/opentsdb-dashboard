@@ -46,22 +46,11 @@ Get opentsdb running
 
 Get opentsdb-dashboard running
 ------------------------------
-1 Get node:
-
-	curl -O http://nodejs.org/dist/node-v0.4.8.tar.gz
-	tar -xzvf node-v0.4.8.tar.gz
-	cd node-v0.4.8
-	./configure
-	make
-	sudo make install
-	cd ..
+1 Download and install node.js from `http://nodejs.org/`
 
 2 Get npm:
 
-	git clone http://github.com/isaacs/npm.git
-	cd npm
-	sudo make install
-	cd ..
+	curl http://npmjs.org/install.sh | sh
 
 3 Get opentsdb-dashboard:
 
